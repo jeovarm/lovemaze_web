@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Maze</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- MUSIC -->
+    <audio id="bgMusic" loop autoplay>
+        <source src="secret-door.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- BACKGROUND DECORATION -->
+    <div class="star star1">✦</div>
+    <div class="star star2">✧</div>
+    <div class="star star3">✦</div>
+    <div class="star star4">✧</div>
+
+    <!-- MUSIC BUTTON -->
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+        ♫ Play Music
+    </button>
+
+    <!-- MAIN CONTAINER -->
+    <main class="wrapper">
+
+        <div class="top-label">
+            A LITTLE SPACE, FILLED WITH WORDS FOR YOU
+        </div>
+
+        <div class="book">
+
+            <!-- OPENING -->
+            <section class="slide active">
+
+                <div class="ornament">✧</div>
+
+                <p class="eyebrow">A JOURNEY THROUGH MY HEART</p>
+
+                <h1>Love<br><span>Maze</span></h1>
+
+                <div class="line"></div>
+
+                <p class="opening-text">
+                    somewhere between everything,<br>
+                    I found a little place called you.
+                </p>
+
+                <button class="next-btn" onclick="nextSlide()">
+                    Open This Letter ♡
+                </button>
+
+                <div class="page-number">WELCOME</div>
+
+            </section>
+
+
+            <!-- SLIDE 1 -->
+            <section class="slide">
+
+                <div class="page-number">01</div>
+
+                <div class="ornament">♡</div>
+
+                <p class="eyebrow">A LITTLE INTRODUCTION</p>
+
+                <h2>Hi, Sayang!</h2>
+
+                <div class="line"></div>
+
+                <p class="message">
+                    Hi, sayang! I made this for you.
+                    Nothing too fancy, cuma sedikit ruang
+                    buat nyimpen beberapa hal yang mungkin
+                    jarang aku ucapin secara langsung.
+                </p>
+
+                <div class="signature">
+                    with love, always.
+                </div>
+
+                <button class="next-btn" onclick="nextSlide()">
+                    Next Chapter →
+                </button>
+
+            </section>
+
+
+            <!-- SLIDE 2 -->
+            <section class="slide">
+
+                <div class="page-number">02</div>
+
+                <div class="ornament">✧</div>
+
+                <p class="eyebrow">HOW LUCKY I AM</p>
+
+                <h2>Out of Everyone</h2>
+
+                <div class="line"></div>
+
+                <p class="message">
+                    Out of all the people I could've met,
+                    somehow I got to meet you. And honestly,
+                    I'm glad I did. Ada banyak hal kecil
+                    dari kamu yang aku suka, termasuk
+                    hal-hal sederhana yang mungkin
+                    nggak kamu sadari.
+                </p>
+
+                <div class="signature">
+                    you are my favorite coincidence.
+                </div>
+
+                <button class="next-btn" onclick="nextSlide()">
+                    Next Chapter →
+                </button>
+
+            </section>
+
+
+            <!-- SLIDE 3 -->
+            <section class="slide">
+
+                <div class="page-number">03</div>
+
+                <div class="ornament">♡</div>
+
+                <p class="eyebrow">A GENTLE REMINDER</p>
+
+                <h2>It's Okay</h2>
+
+                <div class="line"></div>
+
+                <p class="message">
+                    Kamu nggak harus selalu jadi orang
+                    yang kuat. It's okay to have bad days,
+                    it's okay to feel tired, and it's okay
+                    to take a break.
+                </p>
+
+                <div class="signature">
+                    you deserve a little rest, too.
+                </div>
+
+                <button class="next-btn" onclick="nextSlide()">
+                    Next Chapter →
+                </button>
+
+            </section>
+
+
+            <!-- SLIDE 4 -->
+            <section class="slide">
+
+                <div class="page-number">04</div>
+
+                <div class="ornament">♡</div>
+
+                <p class="eyebrow">ONE LAST THING</p>
+
+                <h2>Thank You</h2>
+
+                <div class="line"></div>
+
+                <p class="message">
+                    Thank you for being part of my days.
+                    Thank you for being you. I may not
+                    always know how to express everything
+                    I feel, but I hope this thing makes
+                    you understand one thing:
+                    <br><br>
+                    <span class="love-text">love u.</span>
+                </p>
+
+                <div class="signature">
+                    and that's all that matters.
+                </div>
+
+                <button class="next-btn" onclick="nextSlide()">
+                    One More Thing ♡
+                </button>
+
+            </section>
+
+
+            <!-- FINAL SLIDE -->
+            <section class="slide">
+
+                <div class="ornament final-ornament">✧</div>
+
+                <p class="eyebrow">
+                    END OF THIS LITTLE MAZE
+                </p>
+
+                <h1 class="final-title">
+                    Still<br><span>Choosing You.</span>
+                </h1>
+
+                <div class="line"></div>
+
+                <p class="opening-text">
+                    no matter how many turns life takes,<br>
+                    I'm glad our paths crossed.
+                </p>
+
+                <div class="final-heart">♡</div>
+
+                <button class="next-btn" onclick="restartSlides()">
+                    Read Again ↺
+                </button>
+
+                <div class="page-number">WITH LOVE, ALWAYS</div>
+
+            </section>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+        <div class="navigation">
+
+            <button id="prevBtn" onclick="prevSlide()">
+                ← Previous
+            </button>
+
+            <div class="dots" id="dots"></div>
+
+            <span class="nav-label">
+                LOVE MAZE
+            </span>
+
+        </div>
+
+        <div class="footer">
+            MADE WITH A LITTLE BIT OF LOVE
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        const slides = document.querySelectorAll(".slide");
+        const prevBtn = document.getElementById("prevBtn");
+        const dotsContainer = document.getElementById("dots");
+
+        const music = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+
+        let currentSlide = 0;
+
+
+        // CREATE NAVIGATION DOTS
+        slides.forEach((slide, index) => {
+
+            const dot = document.createElement("span");
+
+            dot.classList.add("dot");
+
+            dot.addEventListener("click", () => {
+                showSlide(index);
+            });
+
+            dotsContainer.appendChild(dot);
+
+        });
+
+
+        const dots = document.querySelectorAll(".dot");
+
+
+        // SHOW SLIDE
+        function showSlide(index) {
+
+            slides.forEach(slide => {
+                slide.classList.remove("active");
+            });
+
+            dots.forEach(dot => {
+                dot.classList.remove("active-dot");
+            });
+
+            slides[index].classList.add("active");
+            dots[index].classList.add("active-dot");
+
+            currentSlide = index;
+
+            prevBtn.style.visibility =
+                index === 0 ? "hidden" : "visible";
+
+        }
+
+
+        // NEXT
+        function nextSlide() {
+
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+
+        }
+
+
+        // PREVIOUS
+        function prevSlide() {
+
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+
+        }
+
+
+        // RESTART
+        function restartSlides() {
+            showSlide(0);
+        }
+
+
+        // MUSIC CONTROL
+        function toggleMusic() {
+
+            if (music.paused) {
+
+                music.play().catch(() => {
+                    musicBtn.textContent = "♫ Play Music";
+                });
+
+            } else {
+
+                music.pause();
+
+            }
+
+        }
+
+
+        music.addEventListener("play", () => {
+            musicBtn.textContent = "♫ Pause Music";
+        });
+
+
+        music.addEventListener("pause", () => {
+            musicBtn.textContent = "♫ Play Music";
+        });
+
+
+        // AUTOPLAY ATTEMPT
+        window.addEventListener("load", () => {
+
+            music.play().catch(() => {
+                musicBtn.textContent = "♫ Play Music";
+            });
+
+        });
+
+
+        // INITIAL SLIDE
+        showSlide(0);
+
+    </script>
+
+</body>
+</html>
